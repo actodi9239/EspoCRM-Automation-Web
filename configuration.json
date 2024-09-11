@@ -1,0 +1,18 @@
+{
+    "browser": {
+        "name": "remote",
+        "headless": false,
+        "timeout": 50000,
+        "maxWindows": true,
+        "resolution": {
+            "width": 1280,
+            "height": 720
+        }
+    },
+    "remote": {
+        "browser": "chrome",
+        "os": "Windows",
+        "osVersion": "11",
+        "browserVersion": "latest"
+    }
+}
