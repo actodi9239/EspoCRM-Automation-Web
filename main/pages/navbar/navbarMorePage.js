@@ -4,21 +4,21 @@ const { clickOn } = require("../../../core/interactions/action");
 
 class NavbarMorePage {
     navbarMoreContainer = myByCss('[aria-expanded="true"] ~ [role="menu"]');
-    teamOption = myByCss('[data-name="Team"] > a');
-    userOption = myByCss('[data-name="User"] > a');
+    targetListOption = myByCss('[data-name="TargetList"] > a');
+    campaignOption = myByCss('[data-name="Campaign"] > a');
 
     async isVisible() {
         await untilIsLocated(this.navbarMoreContainer);
     }
 
-    async clickMenuTeam() {
-        await untilIsVisible(this.teamOption);
-        await clickOn(this.teamOption);
+    async clickMenuTargetList() {
+        await untilIsVisible(this.targetListOption);
+        await clickOn(this.targetListOption);
     }
 
-    async clickMenuUser() {
-        await untilIsVisible(this.userOption);
-        await clickOn(this.userOption);
+    async clickMenuCampaign() {
+        await untilIsVisible(this.campaignOption);
+        await clickOn(this.campaignOption);
     }
 }
 
