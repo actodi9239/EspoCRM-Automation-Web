@@ -1,5 +1,5 @@
 {
-    "baseURL": "https://espo.spartan-soft.com/api/v1",
-    "Espo-Authorization": "YWRtaW4xOmFkbWluMQ==",
+    "baseURL": "https://unitest.espocloud.com/api/v1",
+    "Espo-Authorization": "YWRtaW46ODAwNDkwNTM=",
     "X-Api-Key": "23679e40658651eb7f0a075cacc927ee"
 }

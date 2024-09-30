@@ -31,6 +31,7 @@ class ListPage {
     async getColumnTextsName() {
         return getColumnTexts(this.columnName)
     }
+
     async clickNameTitle() {
         await untilIsVisible(this.nameTitle);
         await clickOn(this.nameTitle);

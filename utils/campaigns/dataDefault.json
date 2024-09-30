@@ -1,0 +1,23 @@
+{
+    "status": "Planning",
+    "type": "Television",
+    "mailMergeOnlyWithAddress": true,
+    "name": "COVID",
+    "startDate": "2019-10-01",
+    "budget": 100,
+    "budgetCurrency": "USD",
+    "endDate": "2020-01-02",
+    "targetListsIds": [],
+    "targetListsNames": {},
+    "excludingTargetListsIds": [],
+    "excludingTargetListsNames": {},
+    "description": "Hello World",
+    "assignedUserName": "Admin",
+    "assignedUserId": "66d786d881f2ae159",
+    "teamsIds": [
+        "52c553e73f0f8"
+    ],
+    "teamsNames": {
+        "52c553e73f0f8": "Support"
+    }
+}
