@@ -1,7 +1,7 @@
 {
-    "baseUrl": "https://unitest.espocloud.com",
+    "baseUrl": "https://testing.espocloud.com",
     "credentials": {
         "username": "admin",
-        "password": "80049053"
+        "password": "62429255"
     }
 }

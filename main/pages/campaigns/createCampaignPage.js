@@ -4,7 +4,6 @@ const { myByCss } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
 
 class CreateCampaignPage extends RegisterPage {
-    // Selectores específicos para la página de Campañas
     nameInput = myByCss('input[data-name="name"]');
     statusSelectTrigger = myByCss('[data-name="status"] .selectize-input');
     typeSelectTrigger = myByCss('[data-name="type"] .selectize-input');
@@ -16,7 +15,6 @@ class CreateCampaignPage extends RegisterPage {
     cancelButton = myByCss('[data-name="cancel"]');
     autocompletedOption = myByCss('.autocomplete-suggestion');
 
-    // Método para asegurarse de que la página está completamente cargada
     async isVisible() {
         await untilIsLocated(this.nameInput);
         await untilIsLocated(this.statusSelectTrigger);
@@ -28,7 +26,6 @@ class CreateCampaignPage extends RegisterPage {
         await untilIsLocated(this.saveButton);
     }
 
-    // Método general para establecer valores en los diferentes campos
     async setValues(name, status, type, budget, targetList, excludingTargetList, description) {
         await this.setValueName(name);
         await this.setValueStatus(status);
@@ -39,20 +36,17 @@ class CreateCampaignPage extends RegisterPage {
         await this.setValueDescription(description);
     }
 
-    // Método para establecer el nombre
     async setValueName(name) {
         await untilIsVisible(this.nameInput);
         await clearText(this.nameInput);
         await setValue(this.nameInput, name);
     }
 
-    // Método para establecer el estatus
     async setValueStatus(status) {
         await untilIsVisible(this.statusSelectTrigger);
         await clickOn(this.statusSelectTrigger);
         let optionLocator;
 
-        // Mapear el estatus al valor correcto
         switch (status) {
             case 'Activo':
                 optionLocator = myByCss('[data-value="Active"]');
@@ -73,13 +67,11 @@ class CreateCampaignPage extends RegisterPage {
         await clickOn(optionLocator);
     }
 
-    // Método para establecer el tipo de campaña
     async setValueType(type) {
         await untilIsVisible(this.typeSelectTrigger);
         await clickOn(this.typeSelectTrigger);
         let optionLocator;
 
-        // Mapear el tipo al valor correcto
         switch (type) {
             case 'Correo':
                 optionLocator = myByCss('[data-value="Email"]');
@@ -106,34 +98,31 @@ class CreateCampaignPage extends RegisterPage {
         await clickOn(optionLocator);
     }
 
-    // Método para establecer el presupuesto
     async setValueBudget(budget) {
         await untilIsVisible(this.budgetInput);
         await clearText(this.budgetInput);
         await setValue(this.budgetInput, budget);
     }
 
-    // Método para establecer la lista de objetivos
     async setValueTargetList(targetList) {
         await untilIsVisible(this.targetListInput);
         await setValue(this.targetListInput, targetList);
-        await pressEnter(this.targetListInput); // Autocompletar lista de objetivos
+        await pressEnter(this.targetListInput); 
     }
 
-    // Método para establecer la lista de exclusión
     async setValueExcludingTargetList(excludingTargetList) {
         await untilIsVisible(this.excludingTargetListsInput);
         await setValue(this.excludingTargetListsInput, excludingTargetList);
-        await pressEnter(this.excludingTargetListsInput); // Autocompletar lista excluida
+        await pressEnter(this.excludingTargetListsInput);
     }
 
-    // Método para establecer la descripción
+
     async setValueDescription(description) {
         await untilIsVisible(this.descriptionInput);
         await setValue(this.descriptionInput, description);
     }
 
-    // Método para guardar la campaña
+
     async clickSaveButton() {
         await untilIsVisible(this.saveButton);
         await clickOn(this.saveButton);

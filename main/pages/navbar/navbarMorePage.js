@@ -6,6 +6,7 @@ class NavbarMorePage {
     navbarMoreContainer = myByCss('[aria-expanded="true"] ~ [role="menu"]');
     targetListOption = myByCss('[data-name="TargetList"] > a');
     campaignOption = myByCss('[data-name="Campaign"] > a');
+    iconSpinner = myByCss('#notification span');
 
     async isVisible() {
         await untilIsLocated(this.navbarMoreContainer);
@@ -14,11 +15,13 @@ class NavbarMorePage {
     async clickMenuTargetList() {
         await untilIsVisible(this.targetListOption);
         await clickOn(this.targetListOption);
+        await untilIsVisible(this.iconSpinner);
     }
 
     async clickMenuCampaign() {
         await untilIsVisible(this.campaignOption);
         await clickOn(this.campaignOption);
+        await untilIsVisible(this.iconSpinner);
     }
 }
 

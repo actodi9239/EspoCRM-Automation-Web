@@ -6,12 +6,12 @@ const ButtonPage = require('../base/buttonPage');
 class ViewCampaignPage extends ButtonPage {
     titleText = myByCss('span.title');  // Título de la campaña (visible en la parte superior)
     nameText = myByCss('label ~ [data-name="name"] ');  // Nombre de la campaña
-    statusText = myByCss('[data-name="status"]');  // Estatus de la campaña
-    typeText = myByCss('[data-name="type"]');  // Tipo de campaña (ej. Televisión, Correo)
-    budgetText = myByCss('[data-name="budget"]');  // Presupuesto de la campaña
+    statusText = myByCss('[data-name="status"] >div > span');  // Estatus de la campaña
+    typeText = myByCss('[data-name="type"] > div >span');  // Tipo de campaña (ej. Televisión, Correo)
+    budgetText = myByCss('[data-name="budget"]  > div');  // Presupuesto de la campaña
     targetListText = myByCss('[data-name="targetLists"]');  // Lista de intereses seleccionada
     excludingTargetListText = myByCss('[data-name="excludingTargetLists"]');  // Lista de intereses excluidas
-    descriptionText = myByCss('[data-name="description"]');  // Descripción de la campaña
+    descriptionText = myByCss('[data-name="description"] .complex-text');  // Descripción de la campaña
     redirectionButton = myByCss('[data-action="navigateToRoot"]')
     // Método para asegurarse de que la página está visible
     async isVisible() {
@@ -41,7 +41,10 @@ class ViewCampaignPage extends ButtonPage {
 
     // Obtener el presupuesto de la campaña
     async getTextBudget() {
-        return await getText(this.budgetText);
+        const text = await getText(this.budgetText);
+        const formattedText = text.replace('$', '').replace(/,/g, '').trim();
+        const budgetNumber = parseFloat(formattedText);
+        return ""+budgetNumber;
     }
 
     // Obtener la lista de intereses seleccionada
@@ -64,10 +67,10 @@ class ViewCampaignPage extends ButtonPage {
         return getCurrentUrlId();
     }
 
-    // Método para redireccionar a la lista de campañas
+    
     async clickRedirectToBack() {
         await untilIsVisible(this.redirectionButton)
-        await clickOn(this.redirectionButton);  // Selecciona el botón para regresar a la lista de campañas
+        await clickOn(this.redirectionButton);
     }
 }
 
