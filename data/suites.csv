@@ -1,7 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Wed Oct 16 22:35:50 GMT 2024","Wed Oct 16 22:35:52 GMT 2024","1644","landing page Campaing Test","","","","","Verify asceding column type",""
-"broken","Wed Oct 16 22:35:52 GMT 2024","Wed Oct 16 22:35:54 GMT 2024","1704","landing page Campaing Test","","","","","Verify descending column type",""
-"passed","Wed Oct 16 22:35:48 GMT 2024","Wed Oct 16 22:35:50 GMT 2024","1665","landing page Campaing Test","","","","","Verify descending column name",""
-"passed","Wed Oct 16 22:35:47 GMT 2024","Wed Oct 16 22:35:48 GMT 2024","1828","landing page Campaing Test","","","","","Verify ascending column name",""
-"broken","Wed Oct 16 22:35:56 GMT 2024","Wed Oct 16 22:35:58 GMT 2024","1747","landing page Campaing Test","","","","","Verify descending column status",""
-"broken","Wed Oct 16 22:35:54 GMT 2024","Wed Oct 16 22:35:56 GMT 2024","1676","landing page Campaing Test","","","","","Verify acceding column status",""
