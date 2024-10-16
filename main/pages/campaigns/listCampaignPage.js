@@ -23,13 +23,13 @@ class ListCampaingPage extends ListPage {
     }
 
     async clickTypeTitle() {
-        await sleep(5000)
+        await sleep(1000)
         await untilIsVisible(this.typeTitle);
         await clickOn(this.typeTitle);
     }
 
     async clickStatusTitle() {
-        await sleep(5000)
+        await sleep(1000)
         await untilIsVisible(this.statusTitle);
         await clickOn(this.statusTitle);
     }
