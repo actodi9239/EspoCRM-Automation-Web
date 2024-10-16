@@ -1,1 +1,1 @@
-{}
+{"9fe32d86f5e3ac255fe9cb0603bee67a:d41d8cd98f00b204e9800998ecf8427e":{"statistic":{"failed":0,"broken":0,"skipped":0,"passed":1,"unknown":0,"total":1},"items":[{"uid":"c98315ab2b6e17e8","reportUrl":"https://actodi9239.github.io/EspoCRM-Automation-Web/7//#testresult/c98315ab2b6e17e8","status":"passed","time":{"start":1729119113924,"stop":1729119117999,"duration":4075}}]}}
