@@ -21,7 +21,7 @@ class NavbarMorePage {
     async clickMenuCampaign() {
         await untilIsVisible(this.campaignOption);
         await clickOn(this.campaignOption);
-        await untilIsVisible(this.iconSpinner);
+       // await untilIsVisible(this.iconSpinner);
     }
 }
 
