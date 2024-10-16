@@ -1,1 +1,1 @@
-{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[{"name":"Create Campaing Test","children":[{"name":"Verify create campaign with field requerids","uid":"9336997d29d9dee2","parentUid":"580b037c1d774f3acf61e5bbe1d8c69a","status":"broken","time":{"start":1729118477922,"stop":1729118478280,"duration":358},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[],"tags":[]}],"uid":"580b037c1d774f3acf61e5bbe1d8c69a"}],"name":"suites"}
+{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[],"name":"suites"}
