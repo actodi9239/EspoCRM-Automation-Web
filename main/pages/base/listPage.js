@@ -41,6 +41,7 @@ class ListPage {
   async clickNameTitle() {
     await untilIsVisible(this.nameTitle);
     await clickOn(this.nameTitle);
+    await sleep();
   }
 }
 
