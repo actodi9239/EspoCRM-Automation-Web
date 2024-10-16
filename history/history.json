@@ -1,1 +1,1 @@
-{}
+{"7c8ef54facfc70c7bf85b46c98aa9742:d41d8cd98f00b204e9800998ecf8427e":{"statistic":{"failed":0,"broken":1,"skipped":0,"passed":0,"unknown":0,"total":1},"items":[{"uid":"9336997d29d9dee2","reportUrl":"https://actodi9239.github.io/EspoCRM-Automation-Web/5//#testresult/9336997d29d9dee2","status":"broken","statusDetails":"stale element reference: stale element not found in the current frame\n  (Session info: chrome=129.0.6668.59)","time":{"start":1729118477922,"stop":1729118478280,"duration":358}}]}}
