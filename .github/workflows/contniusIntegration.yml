@@ -25,7 +25,7 @@ jobs:
 
       - name: Run Selenium tests with Mocha and Allure
         run: |
-          npx mocha 'tests/campaigns/indexTest.js' --reporter allure-mocha --parallel --jobs 3 --reporter-options allureResults=allure-results
+          npx mocha 'tests/campaigns/createTest.js' --reporter allure-mocha --parallel --jobs 3 --reporter-options allureResults=allure-results
         env:
           CI: true
         continue-on-error: true
