@@ -8,7 +8,7 @@ const testConfig = require("../../testConfig.json");
 const LoginPage = require("../../main/pages/loginPage");
 const { myBefore, myAfter, myAfterScreen } = require("../../main/hooks");
 
-describe("Create Campaing Test", function () {
+describe("List TargetList Test", function () {
   this.timeout(50000);
   before(async () => {
     await myBefore();

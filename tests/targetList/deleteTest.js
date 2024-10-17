@@ -13,7 +13,7 @@ const ModalPage = require("../../main/pages/base/modalPage");
 const { myBefore, myAfter, myAfterScreen } = require("../../main/hooks");
 const testConfig = require("../../testConfig.json");
 
-describe("Delete Campaing Test", function () {
+describe("Delete TargetList Test", function () {
   this.timeout(60000);
   let targetList = "";
   before(async () => {    

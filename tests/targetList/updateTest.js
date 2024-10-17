@@ -15,7 +15,7 @@ const {
 const data = require("../../utils/targetList/dataDefault.json");
 const CreateTargetListPage = require("../../main/pages/targetList/createTargetListPage");
 
-describe("Update Campaing Test", function () {
+describe("Update TargetList Test", function () {
   this.timeout(60000);
   let targetList = "";
   before(async () => {
