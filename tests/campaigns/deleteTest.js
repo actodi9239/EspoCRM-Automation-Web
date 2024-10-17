@@ -15,7 +15,8 @@ const data = require("../../utils/campaigns/dataDefault.json");
 describe("Delete Campaing Test", function () {
   this.timeout(60000);
   let campaign = "";
-  before(async () => {
+  before(async () => {    
+    data.name = "Sarampion";
     campaign = await create(data);
     await myBefore();
     await LoginPage.isVisible();

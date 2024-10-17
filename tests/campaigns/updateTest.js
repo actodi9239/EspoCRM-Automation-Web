@@ -19,6 +19,7 @@ describe("Update Campaing Test", function () {
   this.timeout(60000);
   let campaign = "";
   before(async () => {
+    data.name = "Viruela";
     campaign = await create(data);
     await myBefore();
     await LoginPage.isVisible();
