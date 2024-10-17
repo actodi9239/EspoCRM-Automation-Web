@@ -1,2 +1,4 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Thu Oct 17 14:45:00 GMT 2024","Thu Oct 17 14:45:01 GMT 2024","396","Create Campaing Test","","","","","Verify create campaign with field requerids",""
+"passed","Thu Oct 17 14:47:20 GMT 2024","Thu Oct 17 14:47:24 GMT 2024","4662","Create Campaing Test","","","","","Verify create campaign with all fields",""
+"passed","Thu Oct 17 14:47:17 GMT 2024","Thu Oct 17 14:47:19 GMT 2024","2652","Create Campaing Test","","","","","Verify create campaign with field requerids 2",""
+"passed","Thu Oct 17 14:47:13 GMT 2024","Thu Oct 17 14:47:17 GMT 2024","3231","Create Campaing Test","","","","","Verify create campaign with field requerids",""
