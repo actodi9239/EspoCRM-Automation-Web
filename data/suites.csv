@@ -1,2 +1,2 @@
 "Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"broken","Thu Oct 17 14:35:43 GMT 2024","Thu Oct 17 14:35:43 GMT 2024","171","Create Campaing Test","","","","","Verify create campaign with field requerids",""
+"broken","Thu Oct 17 14:45:00 GMT 2024","Thu Oct 17 14:45:01 GMT 2024","396","Create Campaing Test","","","","","Verify create campaign with field requerids",""
