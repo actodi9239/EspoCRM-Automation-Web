@@ -12,7 +12,7 @@ const { myBefore, myAfter, myAfterScreen } = require("../../main/hooks");
 const { create } = require("../../main/api/campaigns/serviceCampaings");
 const data = require("../../utils/campaigns/dataDefault.json");
 
-describe("Create Campaing Test", function () {
+describe("Delete Campaing Test", function () {
   this.timeout(60000);
   let campaign = "";
   before(async () => {
