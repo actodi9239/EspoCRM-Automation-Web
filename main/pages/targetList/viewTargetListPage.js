@@ -10,6 +10,7 @@ class ViewTargetListPage extends ButtonPage {
     nameText = myByCss('label ~ [data-name="name"] ')
     descriptionText = myByCss('[data-name="description"] p')
     enableChecked = myByCss('input[checked]')
+    descriptionNullText = myByCss('.field[data-name="description"] > span')
 
     async isVisible() {
         await untilIsLocated(this.titleText)
@@ -28,8 +29,8 @@ class ViewTargetListPage extends ButtonPage {
         return await getText(this.descriptionText);
     }
 
-    async isTrueEnable(){
-        return await untilIsLocated(this.enableChecked);
+    async getTextDescriptionNull() {
+        return await getText(this.descriptionNullText);
     }
 }
 

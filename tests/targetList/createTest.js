@@ -32,9 +32,9 @@ describe("Create TargetList Test", function () {
 
   afterEach(async function () {
     if (idTarget) {
-        await deleted(idTarget);
-        idTarget = ""; 
-      }
+      await deleted(idTarget);
+      idTarget = "";
+    }
     await myAfterScreen.call(this);
   });
 
@@ -42,25 +42,40 @@ describe("Create TargetList Test", function () {
     await myAfter();
   });
 
-  /*   it('Verify create targetList with field requerids', async () => {
-        createTargetListPage.isVisible()
-        createTargetListPage.setValueName("targetList Test")
-        createTargetListPage.clickSaveButton(); 
+  it("Verify create targetList with field requerids", async () => {
+    await ListTargetListPage.clickCreateButton();
+    await CreateTargetListPage.isVisible();
+    await CreateTargetListPage.setValueName("targetList Test");
+    await CreateTargetListPage.clickSaveButton();
 
-    })
+    expect(await ViewTargetListPage.getTextTitle()).to.equal("targetList Test");
+    expect(await ViewTargetListPage.getTextName()).to.equal("targetList Test");
 
-    it('Verify create targetList with empty description', async () => {
-        createTargetListPage.isVisible()
-        createTargetListPage.setValueName("targetList Test")
-        createTargetListPage.clickSaveButton(); 
-    })
+    idTarget = await ViewTargetListPage.getCurrentUrlId();
 
-    it('Verify create targetList with description', async () => {
-        createTargetListPage.isVisible()
-        createTargetListPage.setValueName("targetList Test")
-        createTargetListPage.setValueDescription("description Target List")
-        createTargetListPage.clickSaveButton(); 
-    }) */
+    await ViewTargetListPage.clickRedirectToBack();
+    expect(await ListTargetListPage.getColumnTextsName()).to.include(
+      "targetList Test"
+    );
+  });
+
+  it("Verify create targetList with empty description", async () => {
+    await ListTargetListPage.clickCreateButton();
+    await CreateTargetListPage.isVisible();
+    await CreateTargetListPage.setValueName("targetList Test");
+    await CreateTargetListPage.clickSaveButton();
+
+    expect(await ViewTargetListPage.getTextTitle()).to.equal("targetList Test");
+    expect(await ViewTargetListPage.getTextName()).to.equal("targetList Test");
+    expect(await ViewTargetListPage.getTextDescriptionNull()).to.equal("(vacío)");
+
+    idTarget = await ViewTargetListPage.getCurrentUrlId();
+
+    await ViewTargetListPage.clickRedirectToBack();
+    expect(await ListTargetListPage.getColumnTextsName()).to.include(
+      "targetList Test"
+    );
+  });
 
   it("Verify create targetList with description", async () => {
     await ListTargetListPage.clickCreateButton();
@@ -72,7 +87,9 @@ describe("Create TargetList Test", function () {
 
     expect(await ViewTargetListPage.getTextTitle()).to.equal("targetList Test");
     expect(await ViewTargetListPage.getTextName()).to.equal("targetList Test");
-    expect(await ViewTargetListPage.getTextDescription()).to.equal("description Target List")
+    expect(await ViewTargetListPage.getTextDescription()).to.equal(
+      "description Target List"
+    );
 
     idTarget = await ViewTargetListPage.getCurrentUrlId();
 
