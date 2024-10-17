@@ -3,6 +3,7 @@ const {
   untilIsVisible,
   waitUntilElementsStops,
   scrollToBottom,
+  sleep,
 } = require("../../../core/interactions/conditions");
 const { myByCss } = require("../../../core/interactions/myBy");
 const { clickOn } = require("../../../core/interactions/action");
@@ -26,7 +27,8 @@ class NavbarMorePage {
   async clickMenuCampaign() {
     await untilIsVisible(this.campaignOption);
     await clickOn(this.campaignOption);
-    await untilIsVisible(this.iconSpinner);
+    await sleep();
+    //await untilIsVisible(this.iconSpinner);
   }
 }
 
