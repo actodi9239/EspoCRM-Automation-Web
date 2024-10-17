@@ -69,7 +69,6 @@ class ViewCampaignPage extends ButtonPage {
 
   // Obtener el ID de la campaña desde la URL actual
   async getCurrentUrlId() {
-    await sleep();
     return getCurrentUrlId();
   }
 
