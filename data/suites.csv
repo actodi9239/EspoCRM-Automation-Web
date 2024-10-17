@@ -1,0 +1,2 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Thu Oct 17 15:40:41 GMT 2024","Thu Oct 17 15:40:42 GMT 2024","1774","Delete Campaing Test","","","","","Verify delete campaign with page view",""

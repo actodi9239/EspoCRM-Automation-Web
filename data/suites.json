@@ -1,1 +1,1 @@
-{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[],"name":"suites"}
+{"uid":"98d3104e051c652961429bf95fa0b5d6","children":[{"name":"Delete Campaing Test","children":[{"name":"Verify delete campaign with page view","uid":"3e108d8dd5934fb3","parentUid":"fcf08c05bff842abb3215ffc1c05bae4","status":"passed","time":{"start":1729179641208,"stop":1729179642982,"duration":1774},"flaky":false,"newFailed":false,"newPassed":false,"newBroken":false,"retriesCount":0,"retriesStatusChange":false,"parameters":[],"tags":[]}],"uid":"fcf08c05bff842abb3215ffc1c05bae4"}],"name":"suites"}
