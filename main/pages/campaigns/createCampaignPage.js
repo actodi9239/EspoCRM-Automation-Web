@@ -1,4 +1,4 @@
-const { untilIsLocated, untilIsVisible } = require("../../../core/interactions/conditions");
+const { untilIsLocated, untilIsVisible, sleep } = require("../../../core/interactions/conditions");
 const { setValue, clearText, clickOn, pressEnter } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
@@ -126,6 +126,7 @@ class CreateCampaignPage extends RegisterPage {
     async clickSaveButton() {
         await untilIsVisible(this.saveButton);
         await clickOn(this.saveButton);
+        await sleep(200);
     }
 }
 
