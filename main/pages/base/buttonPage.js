@@ -1,4 +1,4 @@
-const { untilIsLocated, untilIsVisible } = require("../../../core/interactions/conditions");
+const { untilIsLocated, untilIsVisible, getCurrentUrlId } = require("../../../core/interactions/conditions");
 const { clickOn, setValue } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 
@@ -40,5 +40,9 @@ class ButtonPage {
         await untilIsVisible(this.duplicateButton);
         await clickOn(this.duplicateButton);
     }
+
+    async getCurrentUrlId() {
+        return getCurrentUrlId();
+      }
 }
 module.exports = ButtonPage; 

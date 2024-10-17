@@ -1,7 +1,6 @@
 const {
   untilIsLocated,
   untilIsVisible,
-  getCurrentUrlId,
   sleep,
 } = require("../../../core/interactions/conditions");
 const { clickOn, getText } = require("../../../core/interactions/action");
@@ -68,9 +67,7 @@ class ViewCampaignPage extends ButtonPage {
   }
 
   // Obtener el ID de la campaña desde la URL actual
-  async getCurrentUrlId() {
-    return getCurrentUrlId();
-  }
+  
 
   async clickRedirectToBack() {
     await untilIsVisible(this.redirectionButton);

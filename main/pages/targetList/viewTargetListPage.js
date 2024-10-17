@@ -8,6 +8,8 @@ const ButtonPage = require('../base/buttonPage');
 class ViewTargetListPage extends ButtonPage {
     titleText = myByCss('span.title')
     nameText = myByCss('label ~ [data-name="name"] ')
+    descriptionText = myByCss('[data-name="description"] p')
+    enableChecked = myByCss('input[checked]')
 
     async isVisible() {
         await untilIsLocated(this.titleText)
@@ -15,11 +17,19 @@ class ViewTargetListPage extends ButtonPage {
     }
 
     async getTextTitle() {
-        return await getText(this.meetingTitle);
+        return await getText(this.titleText);
     }
 
     async getTextName() {
-        return await getText(this.meetingTitle);
+        return await getText(this.nameText);
+    }
+
+    async getTextDescription() {
+        return await getText(this.descriptionText);
+    }
+
+    async isTrueEnable(){
+        return await untilIsLocated(this.enableChecked);
     }
 }
 
