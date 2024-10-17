@@ -1,5 +1,5 @@
 const { untilIsLocated, untilIsVisible} = require("../../../core/interactions/conditions");
-const { setValue, clickOn } = require("../../../core/interactions/action");
+const { setValue, clickOn, clearText } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
 
@@ -16,6 +16,7 @@ class CreateTargetListPage extends RegisterPage {
 
     async setValueName(name) {
         await untilIsVisible(this.nameInput);
+        await clearText(this.nameInput);
         await setValue(this.nameInput, name);
     }
 
