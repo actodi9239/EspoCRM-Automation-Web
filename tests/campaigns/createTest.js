@@ -31,7 +31,10 @@ describe("Create Campaing Test", function () {
   });
 
   afterEach(async function () {
-    await deleted(idCampaing);
+    if (idCampaing) {
+      await deleted(idCampaing);
+      idCampaing = ""; 
+    }
     await myAfterScreen.call(this);
   });
 
