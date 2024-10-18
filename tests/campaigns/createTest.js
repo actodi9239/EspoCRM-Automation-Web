@@ -59,20 +59,6 @@ describe("Create Campaing Test", function () {
     );
   });
 
-  it("Verify create campaign with field requerids 2", async () => {
-    await ListCampaingPage.clickCreateButton();
-    await CreateCampaignPage.isVisible();
-    await CreateCampaignPage.setValueName("Campaing 22");
-    await CreateCampaignPage.clickSaveButton();
-
-    expect(await ViewCampaignPage.getTextTitle()).to.equal("Campaing 22");
-    expect(await ViewCampaignPage.getTextName()).to.equal("Campaing 22");
-
-    idCampaing = await ViewCampaignPage.getCurrentUrlId();
-
-    await ViewCampaignPage.clickRedirectToBack();
-  });
-
   it("Verify create campaign with all fields", async () => {
     await ListCampaingPage.clickCreateButton();
     await CreateCampaignPage.isVisible();

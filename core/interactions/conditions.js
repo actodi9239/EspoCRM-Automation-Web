@@ -13,6 +13,14 @@ exports.untilIsLocated = async (locator) => {
 
 /**
  * 
+ */
+exports.reloadPage = async () => {
+    myLogger.info("Reloading the current page");
+    await DriverFactory.myDriver.navigate().refresh(); 
+};
+
+/**
+ * 
  * @param {By} locator 
  * @returns {Promise<WebElement>} 
  */

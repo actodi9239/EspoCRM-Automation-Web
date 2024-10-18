@@ -2,6 +2,7 @@ const {
   untilIsLocated,
   untilIsVisible,
   sleep,
+  reloadPage
 } = require("../../../core/interactions/conditions");
 const {
   clickOn,
@@ -21,6 +22,9 @@ class ListPage {
 
   nameTitle = myByCss('th [data-name="name"]');
 
+  actionsButton = myByCss('.actions .actions-button');
+  deleteActionsButton = myByCss('.actions [data-action="remove"]')
+
   async isVisible() {
     await untilIsLocated(this.createButton);
     await untilIsLocated(this.searchInput);
@@ -35,6 +39,7 @@ class ListPage {
   }
 
   async getColumnTextsName() {
+    await sleep(200);
     return getColumnTexts(this.columnName);
   }
 
@@ -42,6 +47,20 @@ class ListPage {
     await untilIsVisible(this.nameTitle);
     await clickOn(this.nameTitle);
     await sleep();
+  }
+  
+  async reloadPage() {
+    await reloadPage();
+  }
+
+  async clickActionsButton() {
+    await untilIsVisible(this.actionsButton);
+    await clickOn(this.actionsButton);
+  }
+
+  async clickDeleteActionsButton() {
+    await untilIsVisible(this.deleteActionsButton);
+    await clickOn(this.deleteActionsButton);
   }
 }
 

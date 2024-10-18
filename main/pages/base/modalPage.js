@@ -1,5 +1,5 @@
 const { untilIsLocated, untilIsVisible } = require("../../../core/interactions/conditions");
-const { clickOn, getColumnTexts } = require("../../../core/interactions/action");
+const { clickOn, getColumnTexts, reloadPage } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 
 
