@@ -33,7 +33,7 @@ describe("Create Campaing Test", function () {
   afterEach(async function () {
     if (idCampaing) {
       await deleted(idCampaing);
-      idCampaing = ""; 
+      idCampaing = "";
     }
     await myAfterScreen.call(this);
   });
@@ -67,7 +67,13 @@ describe("Create Campaing Test", function () {
     await CreateCampaignPage.setValueStatus("Completada");
     await CreateCampaignPage.setValueType("Televisión");
     await CreateCampaignPage.setValueBudget(5000);
-    await CreateCampaignPage.setValueDescription("Descripción completa de la campaña");
+    await CreateCampaignPage.setValueDescription(
+      "Descripción completa de la campaña"
+    );
+    await CreateCampaignPage.setValueDateStar("12/12/2024");
+    await CreateCampaignPage.setValueDateEnd("12/15/2024");
+    await CreateCampaignPage.setValueUser("Dar Demo");
+    await CreateCampaignPage.setValueTeam("Team Dev");
     await CreateCampaignPage.clickSaveButton();
 
     expect(await ViewCampaignPage.getTextTitle()).to.equal("Campaign Complete");
@@ -77,8 +83,15 @@ describe("Create Campaing Test", function () {
     expect(await ViewCampaignPage.getTextDescription()).to.equal(
       "Descripción completa de la campaña"
     );
+    expect(await ViewCampaignPage.getTextDateStar()).to.equal("Dic 12");
+    expect(await ViewCampaignPage.getTextDateEnd()).to.equal("Dic 15");
+    expect(await ViewCampaignPage.getTextUser()).to.equal("Dar Demo");
+    expect(await ViewCampaignPage.getTextTeam()).to.include("Team Dev");
 
     idCampaing = await ViewCampaignPage.getCurrentUrlId();
     await ViewCampaignPage.clickRedirectToBack();
+    expect(await ListCampaingPage.getColumnTextsName()).to.include(
+      "Campaign Complete"
+    );
   });
 });

@@ -1,4 +1,4 @@
-const { untilIsLocated, untilIsVisible, sleep } = require("../../../core/interactions/conditions");
+const { untilIsLocated, untilIsVisible, sleep, removeElement } = require("../../../core/interactions/conditions");
 const { setValue, clearText, clickOn, pressEnter } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
@@ -13,7 +13,14 @@ class CreateCampaignPage extends RegisterPage {
     descriptionInput = myByCss('[data-name="description"] textarea');
     saveButton = myByCss('[data-name="save"]');
     cancelButton = myByCss('[data-name="cancel"]');
-    autocompletedOption = myByCss('.autocomplete-suggestion');
+    autocompletedOption = myByCss('.autocomplete-suggestions:not([style*="display: none"]) > .autocomplete-suggestion');
+
+    dateStarInput = myByCss('input[data-name="startDate"]');
+    dateEndInput = myByCss('input[data-name="endDate"]');
+    selectUserAssigned = myByCss('input[data-name="assignedUserName"]');
+    selectTeams = myByCss('[data-name="teams"] input');
+
+    calendar = myByCss('.datepicker');
 
     async isVisible() {
         await untilIsLocated(this.nameInput);
@@ -118,10 +125,39 @@ class CreateCampaignPage extends RegisterPage {
 
 
     async setValueDescription(description) {
-        await untilIsVisible(this.descriptionInput);
+        await untilIsVisible(this.descriptionInput);        
+        await clearText(this.descriptionInput);
         await setValue(this.descriptionInput, description);
     }
 
+    async setValueDateStar(date) {
+        await untilIsVisible(this.dateStarInput);
+        await clearText(this.dateStarInput);
+        await setValue(this.dateStarInput, date);
+    }
+
+    async setValueDateEnd(date) {
+        await untilIsVisible(this.dateEndInput);
+        await clearText(this.dateEndInput);
+        await setValue(this.dateEndInput, date);
+    }
+
+    async setValueUser(user){
+        await untilIsVisible(this.selectUserAssigned);
+        await setValue(this.selectUserAssigned, user);           
+        await removeElement(this.calendar)
+        await sleep(300);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.selectUserAssigned);
+    }
+
+    async setValueTeam(team){
+        await untilIsVisible(this.selectTeams);
+        await setValue(this.selectTeams, team);        
+        await sleep(300);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.selectTeams);
+    }
 
     async clickSaveButton() {
         await untilIsVisible(this.saveButton);

@@ -17,6 +17,12 @@ class ViewCampaignPage extends ButtonPage {
   excludingTargetListText = myByCss('[data-name="excludingTargetLists"]'); // Lista de intereses excluidas
   descriptionText = myByCss('[data-name="description"] .complex-text'); // Descripción de la campaña
   redirectionButton = myByCss('[data-action="navigateToRoot"]');
+
+  dateStarText = myByCss('.field[data-name="startDate"] > span');
+  dateEndText = myByCss('.field[data-name="endDate"] > span');
+  userText = myByCss('.field[data-name="assignedUser"] > a');
+  teamText = myByCss('.field[data-name="teams"]  a');
+
   // Método para asegurarse de que la página está visible
   async isVisible() {
     await untilIsLocated(this.titleText);
@@ -51,27 +57,37 @@ class ViewCampaignPage extends ButtonPage {
     return "" + budgetNumber;
   }
 
-  // Obtener la lista de intereses seleccionada
   async getTextTargetList() {
     return await getText(this.targetListText);
   }
 
-  // Obtener la lista de intereses excluidas seleccionada
   async getTextExcludingTargetList() {
     return await getText(this.excludingTargetListText);
   }
 
-  // Obtener la descripción de la campaña
   async getTextDescription() {
     return await getText(this.descriptionText);
   }
 
-  // Obtener el ID de la campaña desde la URL actual
-  
-
   async clickRedirectToBack() {
     await untilIsVisible(this.redirectionButton);
     await clickOn(this.redirectionButton);
+  }
+
+  async getTextDateStar() {
+    return await getText(this.dateStarText);
+  }
+
+  async getTextDateEnd() {
+    return await getText(this.dateEndText);
+  }
+
+  async getTextUser() {
+    return await getText(this.userText);
+  }
+
+  async getTextTeam() {
+    return await getText(this.teamText);
   }
 }
 
