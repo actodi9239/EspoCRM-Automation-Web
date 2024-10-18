@@ -1,6 +1,6 @@
 const { untilIsLocated, untilIsVisible, sleep, removeElement } = require("../../../core/interactions/conditions");
-const { setValue, clearText, clickOn, pressEnter } = require("../../../core/interactions/action");
-const { myByCss } = require("../../../core/interactions/myBy");
+const { setValue, clearText, clickOn, pressEnter, getText } = require("../../../core/interactions/action");
+const { myByCss, myByXpath } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
 
 class CreateCampaignPage extends RegisterPage {
@@ -20,6 +20,16 @@ class CreateCampaignPage extends RegisterPage {
     selectUserAssigned = myByCss('input[data-name="assignedUserName"]');
     selectTeams = myByCss('[data-name="teams"] input');
 
+    selectTargetList = myByCss('[data-name="targetLists"] input');
+    selectExcludingTargetLists = myByCss('[data-name="excludingTargetLists"] input');
+    selectFormatContacts = myByCss('input[data-name="contactsTemplateName"]');
+    selectFormatReference = myByCss('input[data-name="leadsTemplateName"]');
+    selectFormatAccounts = myByCss('input[data-name="accountsTemplateName"]');
+    checkedMail = myByCss('input[data-name="mailMergeOnlyWithAddress"]');
+
+    messageNameRequired = myByCss('.popover-content > p');
+    messageError = myByCss('.alert  .message');
+    
     calendar = myByCss('.datepicker');
 
     async isVisible() {
@@ -81,9 +91,9 @@ class CreateCampaignPage extends RegisterPage {
 
         switch (type) {
             case 'Correo':
-                optionLocator = myByCss('[data-value="Email"]');
-                break;
-            case 'Newsletter':
+                optionLocator = myByXpath("//*[text()='Correo']");
+                break;            
+            case 'Periódico':
                 optionLocator = myByCss('[data-value="Newsletter"]');
                 break;
             case 'Web':
@@ -98,6 +108,7 @@ class CreateCampaignPage extends RegisterPage {
             case 'Correo Físico':
                 optionLocator = myByCss('[data-value="Mail"]');
                 break;
+            
             default:
                 throw new Error(`Tipo "${type}" no encontrado`);
         }
@@ -109,20 +120,7 @@ class CreateCampaignPage extends RegisterPage {
         await untilIsVisible(this.budgetInput);
         await clearText(this.budgetInput);
         await setValue(this.budgetInput, budget);
-    }
-
-    async setValueTargetList(targetList) {
-        await untilIsVisible(this.targetListInput);
-        await setValue(this.targetListInput, targetList);
-        await pressEnter(this.targetListInput); 
-    }
-
-    async setValueExcludingTargetList(excludingTargetList) {
-        await untilIsVisible(this.excludingTargetListsInput);
-        await setValue(this.excludingTargetListsInput, excludingTargetList);
-        await pressEnter(this.excludingTargetListsInput);
-    }
-
+    }    
 
     async setValueDescription(description) {
         await untilIsVisible(this.descriptionInput);        
@@ -146,7 +144,7 @@ class CreateCampaignPage extends RegisterPage {
         await untilIsVisible(this.selectUserAssigned);
         await setValue(this.selectUserAssigned, user);           
         await removeElement(this.calendar)
-        await sleep(300);
+        await sleep(400);
         await untilIsVisible(this.autocompletedOption);
         await pressEnter(this.selectUserAssigned);
     }
@@ -159,10 +157,59 @@ class CreateCampaignPage extends RegisterPage {
         await pressEnter(this.selectTeams);
     }
 
+    async setValueTargetList(targetList){
+        await untilIsVisible(this.selectTargetList);
+        await setValue(this.selectTargetList, targetList);        
+        await sleep(300);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.selectTargetList);
+    }
+
+    async setValueExcludingTargetList(targetList){
+        await untilIsVisible(this.selectExcludingTargetLists);
+        await setValue(this.selectExcludingTargetLists, targetList);        
+        await sleep(300);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.selectExcludingTargetLists);
+    }
+
+    async setValueFormatContacts(contacts){
+        await untilIsVisible(this.selectFormatContacts);
+        await setValue(this.selectFormatContacts, contacts);        
+        await sleep(300);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.selectFormatContacts);
+    }
+
+
+    async setValueFormatReference(reference){
+        await untilIsVisible(this.selectFormatReference);
+        await setValue(this.selectFormatReference, reference);        
+        await sleep(300);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.selectFormatReference);
+    }
+
+    async setValueFormatAccounts(account){
+        await untilIsVisible(this.selectFormatAccounts);
+        await setValue(this.selectFormatAccounts, account);        
+        await sleep(300);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.selectFormatAccounts);
+    }
+
     async clickSaveButton() {
         await untilIsVisible(this.saveButton);
         await clickOn(this.saveButton);
         await sleep(200);
+    }
+
+    async getTextMessageNameRequired() {
+        return await getText(this.messageNameRequired);
+    }
+
+    async getTextMessageError() {
+        return await getText(this.messageError);
     }
 }
 

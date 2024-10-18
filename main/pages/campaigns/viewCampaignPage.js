@@ -3,7 +3,7 @@ const {
   untilIsVisible,
   sleep,
 } = require("../../../core/interactions/conditions");
-const { clickOn, getText } = require("../../../core/interactions/action");
+const { clickOn, getText, getColumnTexts } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 const ButtonPage = require("../base/buttonPage");
 
@@ -22,6 +22,15 @@ class ViewCampaignPage extends ButtonPage {
   dateEndText = myByCss('.field[data-name="endDate"] > span');
   userText = myByCss('.field[data-name="assignedUser"] > a');
   teamText = myByCss('.field[data-name="teams"]  a');
+
+  targetListText = myByCss('.field[data-name="targetLists"] a');
+  excludingTargetListText = myByCss('.field[data-name="excludingTargetLists"] a');
+  formatContactText = myByCss('.field[data-name="contactsTemplate"] a');
+  formatReferenceText = myByCss('.field[data-name="leadsTemplate"] a');
+  formatAccountText = myByCss('.field[data-name="accountsTemplate"] a');
+
+  
+
 
   // Método para asegurarse de que la página está visible
   async isVisible() {
@@ -87,7 +96,26 @@ class ViewCampaignPage extends ButtonPage {
   }
 
   async getTextTeam() {
-    return await getText(this.teamText);
+    return getColumnTexts(this.teamText);
+  }
+
+  async getTextTargetList() {
+    return await getText(this.targetListText);
+  }
+
+  async getTextExcludingTargetList() {
+    return await getText(this.excludingTargetListText);
+  }
+  async getTextFormatContact() {
+    return await getText(this.formatContactText);
+  }
+
+  async getTextFormatReference() {
+    return await getText(this.formatReferenceText);
+  }
+
+  async getTextFormatAccount() {
+    return await getText(this.formatAccountText);
   }
 }
 

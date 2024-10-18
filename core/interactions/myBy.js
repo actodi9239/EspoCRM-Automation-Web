@@ -13,3 +13,15 @@ exports.myByCss = (cssSelector) => {
     myLogger.info(`Using CSS selector: ${cssSelector}`);
     return By.css(cssSelector); 
 };
+
+/**
+ * Select elements by XPath.
+ * Logs the locator information.
+ * 
+ * @param {String} xpathSelector 
+ * @returns {By}
+ */
+exports.myByXpath = (xpathSelector) => {
+    myLogger.info(`Using XPath selector: ${xpathSelector}`);
+    return By.xpath(xpathSelector);  
+};
