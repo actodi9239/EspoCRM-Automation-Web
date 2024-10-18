@@ -195,7 +195,27 @@ describe("Create Campaing Test", function () {
     );
   });
 
+  it("Verify create campaign with all fields type television", async () => {
+    await ListCampaingPage.clickCreateButton();
+    await CreateCampaignPage.isVisible();
+
+    await CreateCampaignPage.setValueName("Campaign Complete");
+    await CreateCampaignPage.setValueStatus("Planificación");
+    await CreateCampaignPage.setValueBudget(5000);
+    await CreateCampaignPage.setValueDescription(
+      "Descripción completa de la campaña"
+    );
+    await CreateCampaignPage.setValueDateStar("12/12/2000");
+    await CreateCampaignPage.setValueDateEnd("12/15/2000");
+    await CreateCampaignPage.setValueUser("Dar Demo");
+    await CreateCampaignPage.setValueTeam("Team Dev");
+    await CreateCampaignPage.clickSaveButton();
+    idCampaing = await ViewCampaignPage.getCurrentUrlId();
+    expect(await CreateCampaignPage.isVisibleMessageError()).to.be.true;
+  });
+
   it("Verify create campaign name null", async () => {
+    await ViewCampaignPage.clickRedirectToBack();
     await ListCampaingPage.clickCreateButton();
     await CreateCampaignPage.isVisible();
     await CreateCampaignPage.setValueName(" ");

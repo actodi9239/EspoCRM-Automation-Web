@@ -1,4 +1,4 @@
-const { untilIsLocated, untilIsVisible, sleep, removeElement } = require("../../../core/interactions/conditions");
+const { untilIsLocated, untilIsVisible, sleep, removeElement, untilIsVisibleSpecific } = require("../../../core/interactions/conditions");
 const { setValue, clearText, clickOn, pressEnter, getText } = require("../../../core/interactions/action");
 const { myByCss, myByXpath } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
@@ -29,6 +29,7 @@ class CreateCampaignPage extends RegisterPage {
 
     messageNameRequired = myByCss('.popover-content > p');
     messageError = myByCss('.alert  .message');
+    messageErrorDanger = myByCss('.alert-danger .message')
     
     calendar = myByCss('.datepicker');
 
@@ -210,6 +211,10 @@ class CreateCampaignPage extends RegisterPage {
 
     async getTextMessageError() {
         return await getText(this.messageError);
+    }
+
+    async isVisibleMessageError() {
+        return await untilIsVisibleSpecific(this.messageErrorDanger);
     }
 }
 

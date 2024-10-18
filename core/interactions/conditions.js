@@ -57,6 +57,29 @@ exports.untilIsVisible = async (locator) => {
 };
 
 /**
+ * 
+ * @param {By} locator 
+ * @returns {Promise<boolean>}
+ */
+exports.untilIsVisibleSpecific = async (locator) => {
+  try {
+    await DriverFactory.myDriver.manage().setTimeouts({ implicit: 0 });    
+    const element = await this.myFindElement(locator);
+    myLogger.info(
+      `Checking if element is visible with locator: ${locator.value}`
+    );
+    await DriverFactory.myDriver.wait(until.elementIsVisible(element), 200);
+    return true;  
+  } catch (error) {    
+    myLogger.warn(
+      `Element not visible or not found within 200ms with locator: ${locator.value}`
+    );
+    return false;
+  }
+};
+
+
+/**
  *
  * @param {By} locator
  */
