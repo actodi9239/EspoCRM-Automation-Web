@@ -195,7 +195,7 @@ describe("Create Campaing Test", function () {
     );
   });
 
-  it("Verify create campaign with all fields type television", async () => {
+  it("Verify create campaign error with date after", async () => {
     await ListCampaingPage.clickCreateButton();
     await CreateCampaignPage.isVisible();
 
