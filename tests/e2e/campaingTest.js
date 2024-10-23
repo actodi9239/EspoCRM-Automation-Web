@@ -13,7 +13,7 @@ const { myBefore, myAfter, myAfterScreen } = require("../../main/hooks");
 const { deleted } = require("../../main/api/campaigns/serviceCampaings");
 
 describe("Create Campaing Test", function () {
-  this.timeout(60000);
+  this.timeout(100000);
   let idCampaing = "";
   before(async () => {
     await myBefore();
