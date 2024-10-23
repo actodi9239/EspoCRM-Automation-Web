@@ -1,5 +1,5 @@
-const { untilIsLocated, untilIsVisible} = require("../../../core/interactions/conditions");
-const { setValue, clickOn, clearText } = require("../../../core/interactions/action");
+const { untilIsLocated, untilIsVisible, untilIsVisibleSpecific} = require("../../../core/interactions/conditions");
+const { setValue, clickOn, clearText, getText } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
 
@@ -8,6 +8,10 @@ class CreateTargetListPage extends RegisterPage {
     descriptionInput = myByCss('textarea[data-name="description"]');
     syncEnable = myByCss('input[data-name="syncWithReportsEnabled"]');
     syncReport = myByCss('.headered [placeholder="Seleccionar"]')
+
+    messageNameRequired = myByCss('.popover-content > p');
+    messageError = myByCss('.alert  .message');
+    messageErrorDanger = myByCss('.alert-danger .message')
 
     async isVisible() {
         await untilIsLocated(this.nameInput);
@@ -35,6 +39,17 @@ class CreateTargetListPage extends RegisterPage {
         await clickOn(this.syncReport);
     }
 
+    async getTextMessageNameRequired() {
+        return await getText(this.messageNameRequired);
+    }
+
+    async getTextMessageError() {
+        return await getText(this.messageError);
+    }
+
+    async isVisibleMessageError() {
+        return await untilIsVisibleSpecific(this.messageErrorDanger);
+    }
 }
 
 module.exports = new CreateTargetListPage(); 

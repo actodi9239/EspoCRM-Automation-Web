@@ -1,10 +1,11 @@
-const { untilIsLocated, untilIsVisible } = require("../../../core/interactions/conditions");
+const { untilIsLocated, untilIsVisible, sleep } = require("../../../core/interactions/conditions");
 const { clickOn, setValue } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 
 class RegisterPage {
     saveButton = myByCss('[data-name="save"]');
     cancelButton = myByCss('[data-name="cancel"]');
+    cancelEditButton = myByCss('[data-name="cancelEdit"]')
     moreIcon = myByCss('[role="group"] > [data-toggle="dropdown"]');
     saveContinueButton = myByCss('[data-name="saveAndContinueEditing"]')
     saveNewButton = myByCss('[data-name="saveAndNew"]')
@@ -12,7 +13,6 @@ class RegisterPage {
     // [data-name="edit"]
     async isVisible() {
         await untilIsLocated(this.saveButton);
-        await untilIsLocated(this.cancelButton);
         await untilIsLocated(this.moreIcon);
     }
 
@@ -23,6 +23,11 @@ class RegisterPage {
     async clickCancelButton() {
         await untilIsVisible(this.cancelButton);
         await clickOn(this.cancelButton);
+    }
+
+    async clickCancelEditButton() {
+        await untilIsVisible(this.cancelEditButton);
+        await clickOn(this.cancelEditButton);
     }
 
     async clickMoreIcon() {

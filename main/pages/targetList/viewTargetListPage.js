@@ -16,7 +16,8 @@ class ViewTargetListPage extends ButtonPage {
     }
 
     async getTextTitle() {
-        await untilIsVisible(this.titleText); 
+        await untilIsVisible(this.titleText);
+        return await getText(this.titleText); 
     }
 
     async getTextName() {

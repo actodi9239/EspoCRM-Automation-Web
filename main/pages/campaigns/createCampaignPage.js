@@ -7,7 +7,7 @@ class CreateCampaignPage extends RegisterPage {
     nameInput = myByCss('input[data-name="name"]');
     statusSelectTrigger = myByCss('[data-name="status"] .selectize-input');
     typeSelectTrigger = myByCss('[data-name="type"] .selectize-input');
-    budgetInput = myByCss('[autocomplete="espo-budget"]');
+    budgetInput = myByCss('input[data-name="budget"]');
     targetListInput = myByCss('[data-name="targetLists"] input');
     excludingTargetListsInput = myByCss('[data-name="excludingTargetLists"] input');
     descriptionInput = myByCss('[data-name="description"] textarea');
@@ -119,6 +119,7 @@ class CreateCampaignPage extends RegisterPage {
 
     async setValueBudget(budget) {
         await untilIsVisible(this.budgetInput);
+        await clearText(this.budgetInput);
         await clearText(this.budgetInput);
         await setValue(this.budgetInput, budget);
     }    

@@ -98,4 +98,18 @@ describe("Create TargetList Test", function () {
       "targetList Test"
     );
   });
+
+  it("Verify create campaign name null", async () => {
+    await ListTargetListPage.clickCreateButton();
+    await CreateTargetListPage.isVisible();
+    await CreateTargetListPage.setValueName(" ");
+    await CreateTargetListPage.clickSaveButton();
+
+    expect(await CreateTargetListPage.getTextMessageNameRequired()).to.equal(
+      "Nombre es requerido"
+    );
+    expect(await CreateTargetListPage.getTextMessageError()).to.equal(
+      "No válido"
+    );
+  });
 });
