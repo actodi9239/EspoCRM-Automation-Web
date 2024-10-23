@@ -3,7 +3,7 @@ const {
   untilIsVisible,
   sleep,
 } = require("../../../core/interactions/conditions");
-const { clickOn, getText } = require("../../../core/interactions/action");
+const { clickOn, getText, getColumnTexts } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 const ButtonPage = require("../base/buttonPage");
 
@@ -17,6 +17,21 @@ class ViewCampaignPage extends ButtonPage {
   excludingTargetListText = myByCss('[data-name="excludingTargetLists"]'); // Lista de intereses excluidas
   descriptionText = myByCss('[data-name="description"] .complex-text'); // Descripción de la campaña
   redirectionButton = myByCss('[data-action="navigateToRoot"]');
+
+  dateStarText = myByCss('.field[data-name="startDate"] > span');
+  dateEndText = myByCss('.field[data-name="endDate"] > span');
+  userText = myByCss('.field[data-name="assignedUser"] > a');
+  teamText = myByCss('.field[data-name="teams"]  a');
+
+  targetListText = myByCss('.field[data-name="targetLists"] a');
+  excludingTargetListText = myByCss('.field[data-name="excludingTargetLists"] a');
+  formatContactText = myByCss('.field[data-name="contactsTemplate"] a');
+  formatReferenceText = myByCss('.field[data-name="leadsTemplate"] a');
+  formatAccountText = myByCss('.field[data-name="accountsTemplate"] a');
+
+  
+
+
   // Método para asegurarse de que la página está visible
   async isVisible() {
     await untilIsLocated(this.titleText);
@@ -51,27 +66,56 @@ class ViewCampaignPage extends ButtonPage {
     return "" + budgetNumber;
   }
 
-  // Obtener la lista de intereses seleccionada
   async getTextTargetList() {
     return await getText(this.targetListText);
   }
 
-  // Obtener la lista de intereses excluidas seleccionada
   async getTextExcludingTargetList() {
     return await getText(this.excludingTargetListText);
   }
 
-  // Obtener la descripción de la campaña
   async getTextDescription() {
     return await getText(this.descriptionText);
   }
 
-  // Obtener el ID de la campaña desde la URL actual
-  
-
   async clickRedirectToBack() {
     await untilIsVisible(this.redirectionButton);
     await clickOn(this.redirectionButton);
+  }
+
+  async getTextDateStar() {
+    return await getText(this.dateStarText);
+  }
+
+  async getTextDateEnd() {
+    return await getText(this.dateEndText);
+  }
+
+  async getTextUser() {
+    return await getText(this.userText);
+  }
+
+  async getTextTeam() {
+    return getColumnTexts(this.teamText);
+  }
+
+  async getTextTargetList() {
+    return await getText(this.targetListText);
+  }
+
+  async getTextExcludingTargetList() {
+    return await getText(this.excludingTargetListText);
+  }
+  async getTextFormatContact() {
+    return await getText(this.formatContactText);
+  }
+
+  async getTextFormatReference() {
+    return await getText(this.formatReferenceText);
+  }
+
+  async getTextFormatAccount() {
+    return await getText(this.formatAccountText);
   }
 }
 

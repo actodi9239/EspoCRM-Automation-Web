@@ -60,5 +60,63 @@ describe("Update Campaing Test", function () {
     await ViewCampaignPage.clickRedirectToBack();
 
     expect(await ListCampaingPage.getColumnTextsName()).to.include("prueba");
+
+  });
+
+  it("Verify updating a campaign without modifying any fields", async () => {
+    await ListCampaingPage.clickCampaignRow(campaign.id);
+    await ViewCampaignPage.clickEditButton();
+    await CreateCampaignPage.isVisible();
+    await CreateCampaignPage.clickSaveButton();
+
+    expect(await ViewCampaignPage.getTextTitle()).to.equal("prueba");
+    expect(await ViewCampaignPage.getTextName()).to.equal("prueba");
+
+    await ViewCampaignPage.clickRedirectToBack();
+
+    expect(await ListCampaingPage.getColumnTextsName()).to.include("prueba");
+  });
+
+
+
+  it("Verify that updating a campaign without a name (empty name field) is not allowed", async () => {
+    await ListCampaingPage.clickCampaignRow(campaign.id);
+    await ViewCampaignPage.clickEditButton();  
+    await CreateCampaignPage.isVisible();
+    await CreateCampaignPage.setValueName(" ");
+    await CreateCampaignPage.clickSaveButton();
+
+    expect(await CreateCampaignPage.getTextMessageNameRequired()).to.equal(
+      "Nombre es requerido"
+    );
+    expect(await CreateCampaignPage.getTextMessageError()).to.equal(
+      "No válido"
+    );
+    await CreateCampaignPage.clickCancelEditButton();
+    await ViewCampaignPage.clickRedirectToBack();
+  });
+
+  it("Verify updating a campaign by changing the status to Completed", async () => {
+    await ListCampaingPage.clickCampaignRow(campaign.id);
+    await ViewCampaignPage.clickEditButton();  
+    await CreateCampaignPage.isVisible();
+    await CreateCampaignPage.setValueStatus("Completada");
+    await CreateCampaignPage.clickSaveButton();
+
+    expect(await ViewCampaignPage.getTextStatus()).to.equal(
+      "Completada"
+    );
+    await ViewCampaignPage.clickRedirectToBack();
+  });
+
+  
+  it("Verify that updating a campaign with a duplicate name is not allowed", async () => {
+    await ListCampaingPage.clickCampaignRow(campaign.id);
+    await ViewCampaignPage.clickEditButton();    
+    await CreateCampaignPage.isVisible();
+    await CreateCampaignPage.setValueName("Animales");
+    await CreateCampaignPage.clickSaveButton();
+
+    expect(await CreateCampaignPage.isVisibleMessageError()).to.be.true;
   });
 });

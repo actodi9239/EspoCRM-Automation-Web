@@ -8,6 +8,7 @@ const testConfig = require("../../testConfig.json");
 const LoginPage = require("../../main/pages/loginPage");
 const { myBefore, myAfter, myAfterScreen } = require("../../main/hooks");
 const { log } = require("winston");
+const ViewCampaignPage = require("../../main/pages/campaigns/viewCampaignPage");
 
 describe("landing page Campaing Test", function () {
   this.timeout(60000);
@@ -90,4 +91,54 @@ describe("landing page Campaing Test", function () {
     );
     expect(columnTexts).to.deep.equal(sortedTexts);
   });
+
+  it("Verify search for name", async () => {
+    await ListCampaingPage.setValueSearch("Arboles");
+    expect(await ListCampaingPage.getColumnTextsName()).to.include(
+      "Arboles"
+    );
+    await ListCampaingPage.clickResetButton();
+  });
+
+  it("Verify that a campaign can be selected from the list", async () => {
+    await ListCampaingPage.reloadPage();
+    await ListCampaingPage.clickCampaignRow("67143527cc2288dc1");
+    expect(await ViewCampaignPage.getTextTitle()).to.equal("Animales")
+    await ViewCampaignPage.clickRedirectToBack();
+  });
+
+  it("Verify option active", async () => {
+    await ListCampaingPage.clickButtonFilters();
+    await ListCampaingPage.clickOptionActive();
+    const columnTexts = await ListCampaingPage.getColumnTextsName();
+    expect(columnTexts.length).to.equal(1);    
+  });
+
+  it("Verify option all", async () => {
+    await ListCampaingPage.clickButtonFilters();
+    await ListCampaingPage.clickOptionAll();
+    const columnTexts = await ListCampaingPage.getColumnTextsName();
+    expect(columnTexts.length).to.be.at.least(4);
+  });
+
+  it("Verify option only my active", async () => {
+    await ListCampaingPage.clickButtonFilters();
+    await ListCampaingPage.clickOptionActive();
+    await ListCampaingPage.clickButtonFilters();
+    await ListCampaingPage.clickOptionOnlyMy();
+    const columnTexts = await ListCampaingPage.getColumnTextsName();
+    expect(columnTexts.length).to.equal(1);    
+  });
+
+  it("Verify option only my all", async () => {
+    await ListCampaingPage.clickButtonFilters();
+    await ListCampaingPage.clickButtonFilters();
+    await ListCampaingPage.clickOptionAll();
+    const columnTexts = await ListCampaingPage.getColumnTextsName();
+        expect(columnTexts.length).to.be.at.least(0);   
+    await ListCampaingPage.clickButtonFilters();
+    await ListCampaingPage.clickOptionOnlyMy();    
+    await ListCampaingPage.clickOptionAll();    
+  });
+
 });

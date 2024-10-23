@@ -61,4 +61,69 @@ describe("Update TargetList Test", function () {
 
     expect(await ListTargetListPage.getColumnTextsName()).to.include("prueba");
   });
+
+  it("Verify update targetList description", async () => {
+    await ListTargetListPage.clickTargetListRow(targetList.id);
+    await ViewTargetListPage.clickEditButton();
+    await CreateTargetListPage.isVisible();
+    await CreateTargetListPage.setValueDescription("Descripcion prueba");
+    await CreateTargetListPage.clickSaveButton();
+
+    expect(await ViewTargetListPage.getTextDescription()).to.equal("Descripcion prueba");
+
+    await ViewTargetListPage.clickRedirectToBack();
+  });
+
+  it("Verify update targetList name null", async () => {
+    await ListTargetListPage.clickTargetListRow(targetList.id);
+    await ViewTargetListPage.clickEditButton();
+    await CreateTargetListPage.isVisible();
+    await CreateTargetListPage.setValueDescription("Descripcion prueba");
+    await CreateTargetListPage.clickSaveButton();
+
+    expect(await ViewTargetListPage.getTextDescription()).to.equal("Descripcion prueba");
+
+    await ViewTargetListPage.clickRedirectToBack();
+  });
+
+  it("Verify updating a target list without modifying any fields", async () => {
+    await ListTargetListPage.clickTargetListRow(targetList.id);
+    await ViewTargetListPage.clickEditButton();
+    await CreateTargetListPage.isVisible();
+    await CreateTargetListPage.clickSaveButton();
+
+    expect(await ViewTargetListPage.getTextTitle()).to.equal("prueba");
+    expect(await ViewTargetListPage.getTextName()).to.equal("prueba");
+
+    await ViewTargetListPage.clickRedirectToBack();
+
+    expect(await ListTargetListPage.getColumnTextsName()).to.include("prueba");
+  });
+
+  it("Verify updating a target list all field modifying", async () => {
+    await ListTargetListPage.clickTargetListRow(targetList.id);
+    await ViewTargetListPage.clickEditButton();
+    await CreateTargetListPage.isVisible();    
+    await CreateTargetListPage.setValueName("Target");
+    await CreateTargetListPage.setValueDescription("Descripcion target");
+    await CreateTargetListPage.clickSaveButton();
+
+    expect(await ViewTargetListPage.getTextTitle()).to.equal("Target");
+    expect(await ViewTargetListPage.getTextName()).to.equal("Target");
+    expect(await ViewTargetListPage.getTextDescription()).to.equal("Descripcion target");
+
+    await ViewTargetListPage.clickRedirectToBack();
+
+    expect(await ListTargetListPage.getColumnTextsName()).to.include("Target");
+  });
+
+  it("Verify that updating a list target with a duplicate name is not allowed", async () => {
+    await ListTargetListPage.clickTargetListRow(targetList.id);
+    await ViewTargetListPage.clickEditButton();    
+    await CreateTargetListPage.isVisible();
+    await CreateTargetListPage.setValueName("Computadoras");
+    await CreateTargetListPage.clickSaveButton();
+
+    expect(await CreateTargetListPage.isVisibleMessageError()).to.be.true;
+  });
 });

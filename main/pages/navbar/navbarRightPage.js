@@ -6,7 +6,7 @@ const { myByCss } = require("../../../core/interactions/myBy");
 class NavbarRightPage {
     menuIcon = myByCss('#nav-menu-dropdown')
     menuContainer = myByCss('.menu-container.open')
-    logoutOption = myByCss('[data-action="logout"]')
+    logoutOption = myByCss('[data-name="logout"]')
 
     async isVisible() {
         await untilIsLocated(this.menuIcon)
