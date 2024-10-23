@@ -61,7 +61,7 @@ describe("Delete Campaing Test", function () {
 
   it("Verify the deletion of a campaign using the 'Actions' option.", async () => {
     await ListCampaingPage.reloadPage();
-    await ListCampaingPage.clickCampaingChecked(campaign.id);
+    await ListCampaingPage.clickChecked(campaign.id);
     await ListCampaingPage.clickActionsButton();
     await ListCampaingPage.clickDeleteActionsButton();
     await ModalPage.clickConfirmButton();

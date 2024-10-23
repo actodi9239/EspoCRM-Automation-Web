@@ -2,11 +2,14 @@ const {
   untilIsLocated,
   untilIsVisible,
   sleep,
-  reloadPage
+  reloadPage,
+  waitUntilElementsStops,
 } = require("../../../core/interactions/conditions");
 const {
   clickOn,
   getColumnTexts,
+  pressEnter,
+  setValue,
 } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 
@@ -20,10 +23,17 @@ class ListPage {
   columnName = myByCss('td[data-name="name"] > a');
   downArrow = myByCss('.settings-container [data-toggle="dropdown"]');
 
+  resetButton = myByCss('[data-action="reset"]');
+
+  containerOptionsFilters = myByCss(".filters-button ~ .dropdown-menu");
+  allOption = myByCss('.filter-menu a[data-name=""]');
+  activeOption = myByCss('a[data-name="active"]');
+  onlyMyOption = myByCss('input[data-name="onlyMy"]');
+
   nameTitle = myByCss('th [data-name="name"]');
 
-  actionsButton = myByCss('.actions .actions-button');
-  deleteActionsButton = myByCss('.actions [data-action="remove"]')
+  actionsButton = myByCss(".actions .actions-button");
+  deleteActionsButton = myByCss('.actions [data-action="remove"]');
 
   async isVisible() {
     await untilIsLocated(this.createButton);
@@ -38,8 +48,13 @@ class ListPage {
     await clickOn(this.createButton);
   }
 
+  async clickResetButton() {
+    await untilIsVisible(this.resetButton);
+    await clickOn(this.resetButton);
+  }
+
   async getColumnTextsName() {
-    await sleep(200);
+    await sleep(300);
     return getColumnTexts(this.columnName);
   }
 
@@ -48,9 +63,33 @@ class ListPage {
     await clickOn(this.nameTitle);
     await sleep();
   }
-  
+
   async reloadPage() {
     await reloadPage();
+  }
+
+  async clickButtonFilters() {
+    await untilIsVisible(this.allButton);
+    await clickOn(this.allButton);
+    await waitUntilElementsStops(this.containerOptionsFilters);
+  }
+
+  async clickOptionAll() {
+    await untilIsVisible(this.allOption);
+    await clickOn(this.allOption);
+    await sleep(300);
+  }
+
+  async clickOptionActive() {
+    await untilIsVisible(this.activeOption);
+    await clickOn(this.activeOption);
+    await sleep(200);
+  }
+
+  async clickOptionOnlyMy() {
+    await untilIsVisible(this.onlyMyOption);
+    await clickOn(this.onlyMyOption);
+    await sleep(200);
   }
 
   async clickActionsButton() {
@@ -61,6 +100,20 @@ class ListPage {
   async clickDeleteActionsButton() {
     await untilIsVisible(this.deleteActionsButton);
     await clickOn(this.deleteActionsButton);
+  }
+
+  async clickChecked(id) {
+    const idRowChecked = myByCss(`[data-id="${id}"] input`);
+    await untilIsLocated(idRowChecked);
+    await untilIsVisible(idRowChecked);
+    await clickOn(idRowChecked);
+  }
+
+  async setValueSearch(field) {
+    await untilIsVisible(this.searchInput);
+    await setValue(this.searchInput, field);
+    await sleep(300);
+    await pressEnter(this.searchInput);
   }
 }
 

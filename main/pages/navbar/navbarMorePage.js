@@ -21,7 +21,7 @@ class NavbarMorePage {
   async clickMenuTargetList() {
     await untilIsVisible(this.targetListOption);
     await clickOn(this.targetListOption);
-    await untilIsVisible(this.iconSpinner);
+    //await untilIsVisible(this.iconSpinner);
     await sleep();
   }
 

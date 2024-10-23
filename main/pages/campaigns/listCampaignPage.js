@@ -50,14 +50,6 @@ class ListCampaingPage extends ListPage {
     await clickOn(campaignIdRow);
   }
 
-  async clickCampaingChecked(idCampaing) {
-    const campaignIdRowChecked = myByCss(`[data-id="${idCampaing}"] input`);
-    await untilIsLocated(campaignIdRowChecked);
-    await untilIsVisible(campaignIdRowChecked);
-    await clickOn(campaignIdRowChecked);
-  }
-
-
   async clickCampaingCaret(idCampaing) {
     const campaignIdRowCaret = myByCss(`[data-id="${idCampaing}"] button`);
     const actionsContainer = myByCss(`ul[data-id="${idCampaing}"]`);
