@@ -3,5 +3,9 @@
     "credentials": {
         "username": "admin",
         "password": "62429255"
+    },
+    "credentials2": {
+        "username": "dar_demo",
+        "password": "12345"
     }
 }

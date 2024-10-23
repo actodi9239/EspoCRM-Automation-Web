@@ -1,5 +1,5 @@
-const { untilIsLocated, untilIsVisible, untilIsVisibleSpecific} = require("../../../core/interactions/conditions");
-const { setValue, clickOn, clearText, getText } = require("../../../core/interactions/action");
+const { untilIsLocated, untilIsVisible, untilIsVisibleSpecific, sleep} = require("../../../core/interactions/conditions");
+const { setValue, clickOn, clearText, getText, pressEnter } = require("../../../core/interactions/action");
 const { myByCss } = require("../../../core/interactions/myBy");
 const RegisterPage = require('../base/registerPage');
 
@@ -8,7 +8,8 @@ class CreateTargetListPage extends RegisterPage {
     descriptionInput = myByCss('textarea[data-name="description"]');
     syncEnable = myByCss('input[data-name="syncWithReportsEnabled"]');
     syncReport = myByCss('.headered [placeholder="Seleccionar"]')
-
+    userAssignedInput = myByCss('input[data-name="assignedUserName"]')
+    autocompletedOption = myByCss('.autocomplete-suggestions:not([style*="display: none"]) > .autocomplete-suggestion');
     messageNameRequired = myByCss('.popover-content > p');
     messageError = myByCss('.alert  .message');
     messageErrorDanger = myByCss('.alert-danger .message')
@@ -26,6 +27,7 @@ class CreateTargetListPage extends RegisterPage {
 
     async setValueDescription(description) {
         await untilIsVisible(this.descriptionInput);
+        await clearText(this.descriptionInput);
         await setValue(this.descriptionInput, description);
     }
 
@@ -49,6 +51,14 @@ class CreateTargetListPage extends RegisterPage {
 
     async isVisibleMessageError() {
         return await untilIsVisibleSpecific(this.messageErrorDanger);
+    }
+
+    async setValueUser(user){
+        await untilIsVisible(this.userAssignedInput);
+        await setValue(this.userAssignedInput, user);  
+        await sleep(400);
+        await untilIsVisible(this.autocompletedOption);
+        await pressEnter(this.userAssignedInput);
     }
 }
 
